@@ -18,37 +18,41 @@ import com.kindsonthegenius.fleetms.services.CountryService;
 public class CountryController {
 	
 	@Autowired private CountryService countryService;
+	@GetMapping("/countries")
+    public String getCountries () {
+        return "country";
+    }
+
+	// //Get All Countrys
+	// @GetMapping("countries")
+	// public String findAll(Model model){		
+	// 	model.addAttribute("countries", countryService.findAll());
+	// 	return "country";
+	// }	
 	
-	//Get All Countrys
-	@GetMapping("countries")
-	public String findAll(Model model){		
-		model.addAttribute("countries", countryService.findAll());
-		return "country";
-	}	
+	// @RequestMapping("countries/findById") 
+	// @ResponseBody
+	// public Optional<Country> findById(Integer id)
+	// {
+	// 	return countryService.findById(id);
+	// }
 	
-	@RequestMapping("countries/findById") 
-	@ResponseBody
-	public Optional<Country> findById(Integer id)
-	{
-		return countryService.findById(id);
-	}
+	// //Add Country
+	// @PostMapping(value="countries/addNew")
+	// public String addNew(Country country) {
+	// 	countryService.save(country);
+	// 	return "redirect:/countries";
+	// }	
 	
-	//Add Country
-	@PostMapping(value="countries/addNew")
-	public String addNew(Country country) {
-		countryService.save(country);
-		return "redirect:/countries";
-	}	
+	// @RequestMapping(value="countries/update", method = {RequestMethod.PUT, RequestMethod.GET})
+	// public String update(Country country) {
+	// 	countryService.save(country);
+	// 	return "redirect:/countries";
+	// }
 	
-	@RequestMapping(value="countries/update", method = {RequestMethod.PUT, RequestMethod.GET})
-	public String update(Country country) {
-		countryService.save(country);
-		return "redirect:/countries";
-	}
-	
-	@RequestMapping(value="countries/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
-	public String delete(Integer id) {
-		countryService.delete(id);
-		return "redirect:/countries";
-	}
+	// @RequestMapping(value="countries/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
+	// public String delete(Integer id) {
+	// 	countryService.delete(id);
+	// 	return "redirect:/countries";
+	// }
 }
