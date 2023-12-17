@@ -399,8 +399,29 @@
             </ol>
           </div>
         </div>
-        <!-- page start-->
+        <!-- List of Countries -->
         List of Countries
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Code</th>
+              <th>Capital</th>
+              <th>Description</th>
+              <th>Nationality</th>
+              <th>Continent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="country:${countries}">
+              <td th:text="${country.code}"></td>
+              <td th:text="${country.capital}"></td>
+              <td th:text="${country.description}"></td>
+              <td th:text="${country.nationality}"></td>
+              <td th:text="${country.continent}"></td>
+            </tr>
+          </tbody>
+        </table>
         <!-- page end-->
       </section>
     </section>

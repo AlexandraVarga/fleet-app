@@ -14,13 +14,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.kindsonthegenius.fleetms.models.Country;
 import com.kindsonthegenius.fleetms.services.CountryService;
 
+import java.util.List;
+
 @Controller
 public class CountryController {
 	
 	@Autowired private CountryService countryService;
+	
+	// Get countries
 	@GetMapping("/countries")
-    public String getCountries () {
-        return "country";
+    public String getCountries (Model model) {
+        List <Country> countryList = countryService.findAll();
+		model.addAttribute("countries", countryList);
+		return "country";
     }
 
 	// //Get All Countrys
