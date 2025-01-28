@@ -26,8 +26,6 @@ $('document').ready(function() {
             $('#addressDetails').val(location.address);
             $('#ddlStateDetails').val(location.stateid);
             $('#ddlCountryDetails').val(location.countryid);
-            $('#lastModifiedByDetails').val(location.lastModifiedBy);
-            $('#lastModifiedDateDetails').val(location.lastModifiedDate.substr(0,19).replace("T", " "));
         });
         $('#detailsModal').modal();
     });

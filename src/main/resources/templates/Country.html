@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -401,7 +401,6 @@
         <section class="wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">New Country</button>
                     <h3 class="page-header"><i class="fa fa fa-bars"></i> List of Countries</h3>
                     <ol class="breadcrumb">
                         <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
@@ -411,37 +410,50 @@
                 </div>
             </div>
             <!-- List of Countries -->
-            List of Countries
-            <table class="table">
-                <thead>
-                <tr>
-                    <th><i class="icon_table"></i>Id</th>
-                    <th><i class="icon_table"></i>Code</th>
-                    <th><i class="icon_table"></i>Capital</th>
-                    <th><i class="icon_table"></i>Description</th>
-                    <th><i class="icon_table"></i>Nationality</th>
-                    <th><i class="icon_table"></i>Continent</th>
-                    <th><i class="icon_cogs"></i>Actions</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="country:${countries}">
-                    <td th:text="${country.id}"></td>
-                    <td th:text="${country.code}"></td>
-                    <td th:text="${country.capital}"></td>
-                    <td th:text="${country.description}"></td>
-                    <td th:text="${country.nationality}"></td>
-                    <td th:text="${country.continent}"></td>
-                    <td>
-                        <div  class="btn-group">
-                            <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
-                            <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
-                            <a th:href="@{/countries/delete/(id=${country.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <header class="panel-heading">
+                                Country Details
+                            </header>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                                Add New Country
+                            </button>
                         </div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th><i class="icon_table"></i>Id</th>
+                                <th><i class="icon_table"></i>Code</th>
+                                <th><i class="icon_table"></i>Capital</th>
+                                <th><i class="icon_table"></i>Description</th>
+                                <th><i class="icon_table"></i>Nationality</th>
+                                <th><i class="icon_table"></i>Continent</th>
+                                <th><i class="icon_cogs"></i>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="country:${countries}">
+                                <td th:text="${country.id}"></td>
+                                <td th:text="${country.code}"></td>
+                                <td th:text="${country.capital}"></td>
+                                <td th:text="${country.description}"></td>
+                                <td th:text="${country.nationality}"></td>
+                                <td th:text="${country.continent}"></td>
+                                <td>
+                                    <div  class="btn-group">
+                                        <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-primary" id="editButton"><i class="icon_pencil-edit"></i></a>
+                                        <a th:href="@{/countries/findById/(id=${country.id})}" class="btn btn-success" id="detailsButton"><i class="icon_document_alt"></i></a>
+                                        <a th:href="@{/countries/delete/(id=${country.id})}" class="btn btn-danger" id="deleteButton"><i class="icon_close_alt2"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
             <!-- page end-->
         </section>
     </section>
@@ -490,8 +502,9 @@
                         <label for="nationalityAdd" class="col-form-label">Nationality:</label>
                         <input type="text" class="form-control" id="nationalityAdd" name="nationality">
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -533,6 +546,9 @@
                         <label for="nationalityDetails" class="col-form-label">Nationality:</label>
                         <input type="text" class="form-control" id="nationalityDetails" name="details" readonly>
                     </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -573,8 +589,9 @@
                         <label for="nationalityEdit" class="col-form-label">Nationality:</label>
                         <input type="text" class="form-control" id="nationalityEdit" name="nationality">
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
