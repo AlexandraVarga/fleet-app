@@ -394,8 +394,6 @@
         </div>
     </aside>
     <!--sidebar end-->
-
-    <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
             <div class="row">
@@ -413,19 +411,18 @@
             <div class="row">
                 <div class="col-lg-12">
                     <section class="panel">
-                        <header class="panel-heading">
-                            Advanced Table
-                        </header>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">Add New</button>
-                        <form th:action="@{/employees}" method="get">
-                            <input id="txtSearch" type="text" name="keyword">
-                            <button type="submit">Go</button>
-                        </form>
-                        <table id="employeeTable" class="table table-striped table-advance table-hover">
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <header class="panel-heading">
+                                Employees Details
+                            </header>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                                Add New Employee
+                            </button>
+                        </div>
+
+                        <table class="table table-striped table-advance table-hover">
                             <tbody>
                             <tr>
-                                <th></th>
-                                <th><i class="glyphicon-user"></i>Username</th>
                                 <th><i class="icon_profile"></i> Full Name</th>
                                 <th><i class="icon_calendar"></i>Hire Date</th>
                                 <th><i class="icon_mail_alt"></i> Email</th>
@@ -434,7 +431,6 @@
                                 <th><i class="icon_cogs"></i> Action</th>
                             </tr>
                             <tr th:each="employee:${employees}">
-                                <td><a th:text="${employee.username} ?: 'Check'" th:href="@{/employees/assignUsername/(id=${employee.id})}"></a></td>
                                 <td th:text="${employee.firstname} + ' ' + ${employee.lastname}">Fullname</td>
                                 <td th:text="${employee.hireDate}">HireDate</td>
                                 <td th:text="${employee.email}">Email</td>
@@ -455,6 +451,7 @@
             <!-- page end-->
         </section>
     </section>
+
     <!--main content end-->
     <div class="text-right">
         <div class="credits">
@@ -464,7 +461,6 @@
               Licensing information: https://bootstrapmade.com/license/
               Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
             -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
         </div>
     </div>
 </section>
@@ -475,7 +471,7 @@
         <div class="modal-dialog modal-lg" role="document" style="width:70%">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New Employee Record</h5>
+                    <h5 class="modal-title" id="addModalLabel">New Employee Record</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -486,12 +482,6 @@
                             <tr>
                                 <td width="50%">
 
-                                    <div class="form-group row">
-                                        <label for="txtIdAdd" class="col-sm-4 col-form-label">Id: </label>
-                                        <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtIdAdd" name="id" placeholder="Id">
-                                        </div>
-                                    </div>
                                     <div class="form-group row">
                                         <label for="ddlTitleAdd" class="col-sm-4 col-form-label">Title: </label>
                                         <div class="col-sm-6">
@@ -679,7 +669,7 @@
                                     <div class="form-group row">
                                         <label for="txtIdEdit" class="col-sm-4 col-form-label">Id: </label>
                                         <div class="col-sm-6">
-                                            <input type="text" class="form-control" id="txtIdEdit" name="id" placeholder="Id">
+                                            <input type="text" class="form-control" id="txtIdEdit" readonly name="id" placeholder="Id">
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -832,12 +822,6 @@
                                                         th:text="${employeeType.description}">
                                                 </option>
                                             </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="fupImageEdit" class="col-sm-4 col-form-label">Select Image: </label>
-                                        <div class="col-sm-6">
-                                            <input type="file" class="form-control-file" id="fupImageEdit" name="photo" placeholder="Select File">
                                         </div>
                                     </div>
                                 </td>
