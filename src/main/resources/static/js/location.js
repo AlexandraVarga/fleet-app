@@ -1,3 +1,4 @@
+
 $('document').ready(function() {
 
     $('.table .btn-primary').on('click',function(event){
