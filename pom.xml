@@ -58,10 +58,10 @@
         </dependency>
 
         <!-- Spring Boot Starter Security -->
-        <!-- <dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency> -->
+        </dependency>
 
         <!-- Thymeleaf Extras Spring Security 5 -->
         <dependency>
