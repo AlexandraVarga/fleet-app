@@ -1,32 +1,46 @@
-name: Deploy to Railway
+name: Deploy Spring Boot Application to Railway
 
 on:
   push:
     branches:
-      - main  # Change if using a different branch
+      - main  # Trigger on push to the main branch
 
 jobs:
-  deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+      # Checkout the code from GitHub
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Set Up JDK
-        uses: actions/setup-java@v3
+      # Set up JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
         with:
-          distribution: 'temurin'
+          java-version: '17'
+          distribution: 'adoptopenjdk'
+
+      # Set up Maven
+      - name: Set up Maven
+        uses: actions/setup-java@v2
+        with:
           java-version: '17'
 
-      - name: Build JAR with Maven
-        run: mvn clean package -DskipTests
+      # Build the Spring Boot application using Maven
+      - name: Build with Maven
+        run: mvn clean install -DskipTests
 
-      - name: Install Railway CLI
-        run: curl -fsSL https://railway.app/install.sh | sh
+      # Build Docker image
+      - name: Build Docker image
+        run: docker build -t my-spring-app .
 
-      - name: Authenticate Railway
-        run: railway login --token ${{ secrets.RAILWAY_API_TOKEN }}
+      # Log in to Railway CLI
+      - name: Login to Railway
+        uses: railwayapp/railway-actions@v1
+        with:
+          railway_token: ${{ secrets.RAILWAY_API_TOKEN }}  # Add Railway API token as a secret in GitHub
 
+      # Deploy the Docker image to Railway
       - name: Deploy to Railway
-        run: railway up
+        run: railway up --docker
