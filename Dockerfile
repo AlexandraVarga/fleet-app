@@ -1,6 +1,7 @@
 FROM openjdk:17 AS build
 WORKDIR /app
-COPY . . 
+COPY . .
+RUN chmod +x mvnw
 RUN ./mvnw clean package -DskipTests
 
 FROM openjdk:17
