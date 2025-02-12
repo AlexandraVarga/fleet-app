@@ -1,0 +1,19 @@
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+
+info:
+  application:
+    name: fleet-app
+    description: fleet-db app
+    author: Varga Alexandra
+    version: '@project.version@'
+spring:
+  profiles:
+    active: dev
